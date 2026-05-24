@@ -38,11 +38,42 @@ export default function Hero() {
     return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); };
   }, [charIndex, deleting, roleIndex]);
 
+  // Common smooth scroll function for section transitions
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Your original icons restored with the exact custom link structure requested
   const socials = [
-    { icon: GitBranch, href: '#', label: 'GitHub' },
-    { icon: Layers, href: '#', label: 'LinkedIn' },
-    { icon: AtSign, href: '#', label: 'Twitter' },
-    { icon: Mail, href: '#contact', label: 'Email' },
+    { 
+      icon: GitBranch, 
+      href: 'https://github.com/anshikaydv56', 
+      label: 'GitHub',
+      isExternal: true 
+    },
+    { 
+      icon: Layers, 
+      href: 'https://linkedin.com/in/anshikaydv6', 
+      label: 'LinkedIn',
+      isExternal: true 
+    },
+    { 
+      icon: AtSign, 
+      href: 'mail:anshikaydv06@gmail.com', 
+      label: 'Gmail',
+      isExternal: true 
+    },
+    { 
+      icon: Mail, 
+      href: '#contact', 
+      label: 'Contact Section',
+      isExternal: false,
+      targetId: 'contact'
+    },
   ];
 
   return (
@@ -98,11 +129,11 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.0 }}
         >
-          <a href="#projects" className="btn-primary">
+          <a href="#projects" className="btn-primary" onClick={(e) => handleScrollTo(e, 'projects')}>
             View My Work
             <ArrowDown size={16} />
           </a>
-          <a href="#contact" className="btn-secondary">
+          <a href="#contact" className="btn-secondary" onClick={(e) => handleScrollTo(e, 'contact')}>
             Get In Touch
           </a>
         </motion.div>
@@ -113,8 +144,16 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 1.2 }}
         >
-          {socials.map(({ icon: Icon, href, label }) => (
-            <a key={label} href={href} className="social-link" aria-label={label}>
+          {socials.map(({ icon: Icon, href, label, isExternal, targetId }) => (
+            <a 
+              key={label} 
+              href={href} 
+              className="social-link" 
+              aria-label={label}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              onClick={!isExternal && targetId ? (e) => handleScrollTo(e, targetId) : undefined}
+            >
               <Icon size={18} />
             </a>
           ))}
@@ -145,6 +184,7 @@ export default function Hero() {
         className="hero-scroll"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
+        onClick={(e) => handleScrollTo(e, 'about')}
       >
         <ArrowDown size={20} />
       </motion.a>
