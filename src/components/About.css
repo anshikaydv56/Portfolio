@@ -1,0 +1,243 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-visual {
+  position: relative;
+}
+
+.about-img-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.about-img {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: 24px;
+  display: block;
+  filter: grayscale(20%) brightness(0.85);
+}
+
+.about-img-ring {
+  position: absolute;
+  inset: -12px;
+  border-radius: 36px;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  animation: spin-slow 20s linear infinite;
+}
+
+.ring-2 {
+  inset: -24px;
+  border-color: rgba(6, 182, 212, 0.12);
+  animation-duration: 35s;
+  animation-direction: reverse;
+}
+
+.about-card-floating {
+  position: absolute;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: float 5s ease-in-out infinite;
+}
+
+.code-card {
+  bottom: -20px;
+  right: -30px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  animation-delay: 0.5s;
+}
+
+.code-line { color: var(--text-secondary); }
+.code-line.ml { padding-left: 16px; }
+.c-blue { color: #60a5fa; }
+.c-cyan { color: #67e8f9; }
+.c-green { color: #6ee7b7; }
+.c-amber { color: #fcd34d; }
+
+.exp-card {
+  top: 20px;
+  left: -30px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation-delay: 1s;
+}
+
+.exp-num {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.exp-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-desc {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.about-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.highlight-item {
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.highlight-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-blue);
+}
+
+.highlight-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.highlight-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-img-wrapper { display: flex; justify-content: center; }
+  .exp-card { left: 0; }
+}
+
+@media (max-width: 480px) {
+  .about-highlights { grid-template-columns: 1fr; }
+  .code-card { right: 0; }
+}
+
+/* ==========================================================================
+   ADDED/UPDATED: Resume Multi-Category Dropdown Styles (Glassmorphism)
+   ========================================================================== */
+.resume-dropdown-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.resume-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 250px;
+  background: rgba(255, 255, 255, 0.06); 
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+  border-radius: 14px;
+  padding: 6px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text-secondary, #e2e8f0);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer; /* Click experience maintain rakhne ke liye */
+}
+
+.dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary, #ffffff);
+  transform: translateX(4px);
+}
+
+.item-icon {
+  color: #60a5fa; 
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.dropdown-item:hover .item-icon {
+  color: #67e8f9; 
+}
+
+.item-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.item-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.item-subtitle {
+  font-size: 11px;
+  color: var(--text-muted, #94a3b8);
+  margin-top: 1px;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: var(--border, rgba(255, 255, 255, 0.08));
+  margin: 6px 4px;
+}
+
+/* ==========================================================================
+   KEYFRAMES: Smooth UI Animations (Spins & Floating effects)
+   ========================================================================== */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}

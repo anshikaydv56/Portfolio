@@ -1,0 +1,125 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  transition: all 0.4s ease;
+}
+
+.navbar.scrolled {
+  padding: 12px 0;
+  background: rgba(5, 8, 16, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(30, 42, 69, 0.8);
+}
+
+.navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.navbar-logo svg {
+  color: var(--accent-blue);
+}
+
+.logo-accent {
+  color: var(--accent-cyan);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin-left: auto;
+}
+
+.navbar-link {
+  position: relative;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: color 0.2s;
+}
+
+.navbar-link:hover,
+.navbar-link.active {
+  color: var(--text-primary);
+}
+
+.navbar-link .link-dot {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.navbar-link.active .link-dot {
+  opacity: 1;
+}
+
+.navbar-cta {
+  margin-left: 16px;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.navbar-menu-btn {
+  display: none;
+  color: var(--text-primary);
+  padding: 4px;
+  margin-left: auto;
+}
+
+.navbar-mobile {
+  background: rgba(10, 15, 30, 0.98);
+  border-top: 1px solid var(--border);
+  padding: 12px 0;
+  overflow: hidden;
+}
+
+.navbar-mobile-link {
+  display: block;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.navbar-mobile-link:hover { color: var(--text-primary); }
+
+@media (max-width: 768px) {
+  .navbar-links, .navbar-cta { display: none; }
+  .navbar-menu-btn { display: flex; }
+  .navbar-inner { gap: 0; }
+}
